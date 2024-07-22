@@ -1,0 +1,23 @@
+<div class="h-[calc(100vh-5rem)] overflow-y-auto pt-8 px-4 w-56">
+  <!-- Your panel content goes here -->
+  <p-dropdown
+    [options]="users()"
+    [(ngModel)]="selectedUser"
+    optionLabel="name"
+    placeholder="Select VIP"
+  >
+    <ng-template pTemplate="selectedItem" let-selectedUser>
+      <div class="flex align-items-center gap-2 content-center">
+        <img
+          [src]="getImagePath()"
+          style="width: 26px"
+          class="rounded-full object-cover"
+        />
+        <div class="self-center">{{ selectedUser.name }}</div>
+      </div>
+    </ng-template>
+  </p-dropdown>
+  @if(selectedUser() != null) {
+  <app-user-state [user]="selectedUser()!"></app-user-state>
+  }
+</div>

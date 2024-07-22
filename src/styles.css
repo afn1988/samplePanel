@@ -1,1 +1,38 @@
-/* You can add global styles to this file, and also import other style files */
+@layer tailwind-base, primeng, tailwind-utilities;
+@layer tailwind-base {
+  @tailwind base;
+}
+@layer primeng;
+@layer tailwind-utilities {
+  @tailwind components;
+  @tailwind utilities;
+}
+
+html,
+body {
+  font-family: "Roboto";
+  font-size: 13px;
+  color: #495057;
+}
+
+/* Styling the dropdown button */
+.p-dropdown {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  color: #495057;
+  font-family: "Roboto";
+}
+
+/* Styling the dropdown items */
+.p-dropdown-item {
+  font-family: "Roboto";
+  font-size: 13px;
+}
+
+/* Styling the selected item */
+.p-dropdown-label {
+  font-family: "Roboto";
+  font-size: 13px;
+}

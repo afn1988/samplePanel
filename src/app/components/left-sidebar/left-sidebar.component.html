@@ -1,0 +1,65 @@
+<div
+  class="h-[calc(100vh-5rem)] pt-8 px-4"
+  [ngClass]="sideBarExpanded() ? 'w-56' : 'w-full'"
+>
+  <div class="relative">
+    @if(!sideBarExpanded()) {
+    <Button (click)="toggleSideBar()">
+      <fa-icon [icon]="faArrowRight"></fa-icon> </Button
+    >} @if(sideBarExpanded()) {
+    <div class="w-full flex flex-col">
+      <Button (click)="toggleSideBar()" class="self-end">
+        <fa-icon [icon]="faArrowLeft"></fa-icon>
+      </Button>
+      <div class="flex flex-col mt-4 gap-2">
+        <input
+          type="text"
+          pInputText
+          class="w-full p-2 rounded-md border border-gray-300"
+          [(ngModel)]="search"
+          placeholder="Search"
+        />
+        <p-dropdown
+          [options]="orderByOptions"
+          [(ngModel)]="selectedOrderBy"
+          placeholder="Select Order"
+          ><ng-template pTemplate="selectedItem">
+            <div
+              class="flex align-items-center gap-2"
+              *ngIf="selectedOrderBy()"
+            >
+              <div>{{ selectedOrderBy() }}</div>
+            </div>
+          </ng-template>
+          <ng-template let-orderBy pTemplate="item">
+            <div>{{ orderBy.text }}</div>
+          </ng-template></p-dropdown
+        >
+        <div class="mt-4">
+          @for( item of filteredProjects(); track item) {
+          <button
+            type="button"
+            (click)="selectProject(item)"
+            class="flex flex-row w-full p-1 hover:bg-gray-200 hover:rounded-md content-start items-center"
+            [class]="
+              item.name === selectedProject()?.name
+                ? 'bg-gray-300 rounded-md font-semibold'
+                : ''
+            "
+          >
+            <app-profile-picture
+              [initials]="item.initials"
+              class="m-2 flex-none"
+            >
+            </app-profile-picture>
+            <div class="grow justify-self-start text-left">
+              {{ item.name }}
+            </div>
+          </button>
+          }
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</div>

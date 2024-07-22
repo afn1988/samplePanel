@@ -1,0 +1,17 @@
+<div class="pt-10">
+  @for (item of presentStates(); track item) {
+  <button
+    type="button"
+    (click)="selectState(item)"
+    class="flex flex-row justify-between w-full p-2 hover:bg-gray-200 hover:rounded-md"
+    [class]="
+      item.userPos === selectedState()?.userPos
+        ? 'bg-gray-300 rounded-md font-semibold'
+        : ''
+    "
+  >
+    <div>State {{ item.userPos }}</div>
+    <div>{{ item.value }}</div>
+  </button>
+  }
+</div>
